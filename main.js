@@ -91,6 +91,25 @@ document.addEventListener('DOMContentLoaded', () => {
         else themeIcon.textContent = '🔴';
     }
 
+    // Contact form AJAX submission
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(contactForm);
+            const res = await fetch(contactForm.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                contactForm.style.display = 'none';
+                formSuccess.style.display = 'block';
+            }
+        });
+    }
+
     if (!generateBtn || !lottoNumbersContainer) return;
 
     generateBtn.addEventListener('click', () => {

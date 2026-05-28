@@ -78,14 +78,17 @@ document.addEventListener('DOMContentLoaded', () => {
     updateThemeIcon(currentTheme);
 
     themeBtn.addEventListener('click', () => {
-        const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        updateThemeIcon(theme);
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : current === 'light' ? 'red' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateThemeIcon(next);
     });
 
     function updateThemeIcon(theme) {
-        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        if (theme === 'dark') themeIcon.textContent = '🌙';
+        else if (theme === 'light') themeIcon.textContent = '☀️';
+        else themeIcon.textContent = '🔴';
     }
 
     if (!generateBtn || !lottoNumbersContainer) return;

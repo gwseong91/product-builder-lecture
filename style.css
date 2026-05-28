@@ -1,3 +1,25 @@
+:root {
+    --bg-color: #1a1a1a;
+    --container-bg: rgba(43, 43, 43, 0.8);
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --btn-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+    --btn-shadow: rgba(58, 123, 213, 0.4);
+}
+
+[data-theme="light"] {
+    --bg-color: #f0f2f5;
+    --container-bg: rgba(255, 255, 255, 0.9);
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --btn-gradient: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+    --btn-shadow: rgba(0, 210, 255, 0.2);
+}
+
 body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     display: flex;
@@ -5,25 +27,54 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #1a1a1a;
+    background-color: var(--bg-color);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-blend-mode: overlay;
-    color: #fff;
+    color: var(--text-primary);
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
+    position: relative;
     text-align: center;
     padding: 60px 40px;
-    background-color: rgba(43, 43, 43, 0.8);
+    background-color: var(--container-bg);
     border-radius: 40px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 30px 60px var(--shadow-color);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
     max-width: 90%;
     width: 600px;
     margin: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+#theme-btn:hover {
+    background-color: var(--border-color);
+    transform: rotate(15deg);
 }
 
 h1 {
@@ -31,10 +82,10 @@ h1 {
     font-size: 2.5em;
     font-weight: 800;
     letter-spacing: -1px;
-    background: linear-gradient(to bottom, #fff, #aaa);
+    background: linear-gradient(to bottom, var(--text-primary), var(--text-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .lotto-numbers-container {
@@ -53,9 +104,9 @@ h1 {
     cursor: pointer;
     border: none;
     border-radius: 100px;
-    background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+    background: var(--btn-gradient);
     color: white;
-    box-shadow: 0 10px 25px rgba(58, 123, 213, 0.4), 0 0 15px rgba(0, 210, 255, 0.2);
+    box-shadow: 0 10px 25px var(--btn-shadow);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -80,7 +131,7 @@ h1 {
 
 #generate-btn:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(58, 123, 213, 0.6), 0 0 30px rgba(0, 210, 255, 0.4);
+    box-shadow: 0 20px 40px var(--btn-shadow);
 }
 
 #generate-btn:active {

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="럭키툴즈는 로또 번호 추첨기, AI 동물상 테스트 등 재미있고 유용한 무료 온라인 도구를 제공합니다.">
+    <title>서비스 소개 - 럭키툴즈</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main { padding: 40px 20px 60px; }
+
+        .page-card {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--container-bg);
+            border-radius: 40px;
+            box-shadow: 0 30px 60px var(--shadow-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            padding: 52px 48px;
+            transition: background-color 0.3s, box-shadow 0.3s, border 0.3s;
+        }
+
+        .page-title {
+            font-size: 2em;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            background: linear-gradient(to bottom, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-lead {
+            font-size: 1em;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .section-title {
+            font-size: 1.15em;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .service-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+
+        .service-card {
+            background: var(--border-color);
+            border-radius: 20px;
+            padding: 22px 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            border-color: var(--border-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--shadow-color);
+        }
+
+        .service-emoji {
+            font-size: 2em;
+            flex-shrink: 0;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .service-info h3 {
+            font-size: 1em;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .service-info p {
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 36px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92em;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            font-weight: 800;
+            color: var(--text-primary);
+            font-size: 0.85em;
+            width: 20px;
+            height: 20px;
+            background: var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-box {
+            background: var(--border-color);
+            border-radius: 18px;
+            padding: 22px 24px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .contact-box a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            main { padding: 24px 16px 50px; }
+            .page-card { padding: 36px 24px; border-radius: 28px; }
+            .page-title { font-size: 1.7em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">🍀 럭키툴즈</a>
+            <nav class="site-nav">
+                <a href="index.html">로또 추첨기</a>
+                <a href="animal-test.html">동물상 테스트</a>
+                <a href="about.html" aria-current="page">소개</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-card">
+            <h1 class="page-title">🍀 럭키툴즈 소개</h1>
+            <p class="page-lead">
+                럭키툴즈는 누구나 무료로 즐길 수 있는 재미있고 유용한 온라인 도구 모음 서비스입니다.<br>
+                회원가입 없이 바로 사용할 수 있으며, 모든 기능은 영구 무료로 제공됩니다.
+            </p>
+
+            <h2 class="section-title">제공 서비스</h2>
+            <div class="service-cards">
+                <a href="index.html" class="service-card">
+                    <span class="service-emoji">🎱</span>
+                    <div class="service-info">
+                        <h3>로또 번호 추첨기</h3>
+                        <p>
+                            1부터 45까지의 번호 중 완전 무작위로 6개를 자동 생성해드리는 서비스입니다.
+                            특별한 알고리즘이나 패턴 없이 순수한 랜덤 방식으로 작동하므로,
+                            어떤 번호든 동등한 확률로 선택됩니다.
+                            매주 로또를 구매하는 분들께 추천합니다.
+                        </p>
+                    </div>
+                </a>
+                <a href="animal-test.html" class="service-card">
+                    <span class="service-emoji">🐾</span>
+                    <div class="service-info">
+                        <h3>AI 동물상 테스트</h3>
+                        <p>
+                            Google Teachable Machine AI 기술을 활용한 재미있는 얼굴 분석 테스트입니다.
+                            사진 한 장을 업로드하면 AI가 이목구비를 분석하여
+                            강아지상인지 고양이상인지 알려드립니다.
+                            친구들과 함께 가볍게 즐겨보세요!
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <h2 class="section-title">서비스 특징</h2>
+            <ul class="feature-list">
+                <li>모든 서비스 완전 무료 제공</li>
+                <li>별도 회원가입 및 로그인 불필요</li>
+                <li>PC와 모바일 모두 최적화 지원</li>
+                <li>개인정보 최소 수집 원칙 준수</li>
+                <li>다크모드 · 라이트모드 · 레드모드 테마 지원</li>
+            </ul>
+
+            <h2 class="section-title">문의하기</h2>
+            <div class="contact-box">
+                서비스 관련 문의, 제휴 요청, 불편사항 신고는 아래로 연락해 주세요.<br>
+                이메일: <a href="mailto:gw.seong91@gmail.com">gw.seong91@gmail.com</a><br>
+                또는 <a href="index.html#contact-section">홈페이지 문의 양식</a>을 이용해 주세요.
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="about.html">서비스 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="index.html#contact-section">문의하기</a>
+            </div>
+            <p class="footer-copy">© 2025 럭키툴즈. 본 서비스는 무료로 제공됩니다.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

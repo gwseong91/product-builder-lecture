@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물상 테스트 🐾</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Noto Sans KR', sans-serif;
+            background: #0f0f12;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-blend-mode: overlay;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: rgba(255,255,255,0.9); }
+
+        /* ─── Screens ─── */
+        .screen { display: none; width: 100%; max-width: 460px; }
+        .screen.active { display: flex; flex-direction: column; align-items: center; }
+
+        .card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 36px;
+            padding: 44px 36px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+        }
+
+        /* ─── Intro ─── */
+        .animal-emojis {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 3.6em;
+            margin-bottom: 24px;
+        }
+        .animal-emojis span { display: inline-block; animation: float 3s ease-in-out infinite; }
+        .animal-emojis span:last-child { animation-delay: 1.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ff8c42, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.55);
+            font-size: 1em;
+            line-height: 1.65;
+            margin-bottom: 28px;
+        }
+
+        .guide {
+            list-style: none;
+            background: rgba(255,255,255,0.04);
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            text-align: left;
+        }
+        .guide li { font-size: 0.88em; color: rgba(255,255,255,0.65); }
+
+        .start-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.05em;
+            font-weight: 800;
+            border: none;
+            border-radius: 100px;
+            background: linear-gradient(135deg, #ff8c42 0%, #9b59b6 100%);
+            color: #fff;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            box-shadow: 0 12px 30px rgba(155,89,182,0.35);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .start-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 45px rgba(155,89,182,0.5); }
+        .start-btn:active { transform: translateY(-1px); }
+
+        /* ─── Analysis ─── */
+        .analysis-title {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 26px;
+        }
+
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 0 8px;
+        }
+        .spinner {
+            width: 46px;
+            height: 46px;
+            border: 4px solid rgba(255,255,255,0.08);
+            border-top-color: #9b59b6;
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-state p { font-size: 0.85em; color: rgba(255,255,255,0.4); }
+
+        .camera-state { display: none; }
+
+        .webcam-wrapper {
+            position: relative;
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 28px;
+        }
+        #webcam-container {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.12);
+        }
+        #webcam-container canvas {
+            width: 240px !important;
+            height: 240px !important;
+            display: block;
+        }
+        .scan-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #ff8c42;
+            border-right-color: #9b59b6;
+            animation: spin 1.8s linear infinite;
+        }
+
+        .bars { display: flex; flex-direction: column; gap: 14px; margin-bottom: 26px; }
+        .bar-row { display: flex; align-items: center; gap: 10px; }
+        .bar-emoji { font-size: 1.3em; width: 26px; flex-shrink: 0; }
+        .bar-label { font-size: 0.82em; font-weight: 600; color: rgba(255,255,255,0.75); width: 58px; text-align: left; flex-shrink: 0; }
+        .bar-track { flex: 1; height: 10px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 100px; width: 0%; transition: width 0.25s ease; }
+        .dog-fill { background: linear-gradient(90deg, #ff6b2b, #ffaa60); }
+        .cat-fill { background: linear-gradient(90deg, #7d3cc8, #c084fc); }
+        .bar-pct { font-size: 0.82em; font-weight: 700; width: 36px; text-align: right; color: rgba(255,255,255,0.85); flex-shrink: 0; }
+
+        .countdown-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .countdown-ring { position: relative; width: 58px; height: 58px; }
+        .countdown-ring svg { width: 100%; height: 100%; }
+        .countdown-ring .num {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3em; font-weight: 900;
+        }
+        .countdown-label { font-size: 0.78em; color: rgba(255,255,255,0.4); }
+
+        /* ─── Result ─── */
+        .result-emoji { font-size: 5em; margin-bottom: 6px; animation: bounceIn 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes bounceIn {
+            0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .result-type { font-size: 2.1em; font-weight: 900; letter-spacing: -1px; margin-bottom: 6px; }
+        .result-type.dog { background: linear-gradient(135deg, #ff6b2b, #ffaa60); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .result-type.cat { background: linear-gradient(135deg, #7d3cc8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .result-score { font-size: 0.88em; color: rgba(255,255,255,0.4); margin-bottom: 24px; }
+
+        .result-desc {
+            background: rgba(255,255,255,0.04);
+            border-radius: 18px;
+            padding: 20px 22px;
+            font-size: 0.92em;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .result-traits { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 28px; }
+        .trait {
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.78em;
+            font-weight: 700;
+        }
+        .trait.dog { background: rgba(255,140,66,0.12); border: 1px solid rgba(255,140,66,0.28); color: #ffaa60; }
+        .trait.cat { background: rgba(155,89,182,0.12); border: 1px solid rgba(155,89,182,0.28); color: #c084fc; }
+
+        .retry-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 0.95em;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 100px;
+            background: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+        .retry-btn:hover { background: rgba(255,255,255,0.09); transform: translateY(-2px); }
+
+        @media (max-width: 480px) {
+            body { padding: 30px 16px; }
+            .card { padding: 36px 24px; border-radius: 28px; }
+            h1 { font-size: 1.75em; }
+            .animal-emojis { font-size: 3em; }
+            .webcam-wrapper, #webcam-container { width: 210px; height: 210px; }
+            #webcam-container canvas { width: 210px !important; height: 210px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← 홈으로</a>
+
+<!-- ── Intro Screen ── -->
+<div class="screen active" id="screen-intro">
+    <div class="card">
+        <div class="animal-emojis"><span>🐶</span><span>🐱</span></div>
+        <h1>동물상 테스트</h1>
+        <p class="subtitle">나는 강아지상? 고양이상?<br>AI가 내 얼굴을 3초 만에 분석해드립니다</p>
+        <ul class="guide">
+            <li>📷 카메라 접근 권한을 허용해주세요</li>
+            <li>😊 얼굴을 카메라 정면에 맞춰주세요</li>
+            <li>⏱️ 3초 분석 후 결과를 확인하세요</li>
+        </ul>
+        <button class="start-btn" onclick="initTest()">지금 바로 테스트하기 →</button>
+    </div>
+</div>
+
+<!-- ── Analysis Screen ── -->
+<div class="screen" id="screen-analysis">
+    <div class="card">
+        <p class="analysis-title" id="analysis-title">AI 모델 불러오는 중...</p>
+
+        <div class="loading-state" id="loading-state">
+            <div class="spinner"></div>
+            <p>잠시만 기다려주세요</p>
+        </div>
+
+        <div class="camera-state" id="camera-state">
+            <div class="webcam-wrapper">
+                <div id="webcam-container"></div>
+                <div class="scan-ring"></div>
+            </div>
+
+            <div class="bars">
+                <div class="bar-row">
+                    <span class="bar-emoji">🐶</span>
+                    <span class="bar-label">강아지상</span>
+                    <div class="bar-track"><div class="bar-fill dog-fill" id="dog-bar"></div></div>
+                    <span class="bar-pct" id="dog-pct">0%</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-emoji">🐱</span>
+                    <span class="bar-label">고양이상</span>
+                    <div class="bar-track"><div class="bar-fill cat-fill" id="cat-bar"></div></div>
+                    <span class="bar-pct" id="cat-pct">0%</span>
+                </div>
+            </div>
+
+            <div class="countdown-wrap">
+                <div class="countdown-ring">
+                    <svg viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="cg" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#ff8c42"/>
+                                <stop offset="100%" style="stop-color:#9b59b6"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="10"/>
+                        <circle cx="50" cy="50" r="44" fill="none" stroke="url(#cg)" stroke-width="10"
+                            stroke-dasharray="276.5" stroke-dashoffset="276.5"
+                            id="progress-circle" stroke-linecap="round"
+                            transform="rotate(-90 50 50)"/>
+                    </svg>
+                    <span class="num" id="countdown-num">3</span>
+                </div>
+                <span class="countdown-label">분석 중...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Result Screen ── -->
+<div class="screen" id="screen-result">
+    <div class="card" id="result-content"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script>
+    const MODEL_URL = "https://teachablemachine.withgoogle.com/models/HgZ6ckU84/";
+    const ANALYSIS_DURATION = 3000;
+    const CIRCUMFERENCE = 276.5;
+
+    let model, webcam, isRunning = false;
+    let startTime = null, history = [];
+
+    const RESULTS = {
+        dog: {
+            emoji: '🐶',
+            type: '강아지상',
+            cls: 'dog',
+            desc: '밝고 따뜻한 에너지로 주변을 환하게 만드는 당신! 친근하고 솔직한 성격 덕분에 어디서든 금방 친해지는 인싸 타입이에요. 충성스럽고 의리 있어 한 번 맺은 인연은 끝까지 소중히 여기는 따뜻한 사람이에요.',
+            traits: ['친근함', '활발함', '의리', '솔직함', '에너지 넘침']
+        },
+        cat: {
+            emoji: '🐱',
+            type: '고양이상',
+            cls: 'cat',
+            desc: '신비롭고 세련된 분위기를 가진 당신! 도도해 보이지만 가까운 사람에게는 누구보다 깊은 애정을 쏟는 타입이에요. 독립적이고 개성 강한 매력으로 상대방을 자연스럽게 끌어당기는 카리스마를 지녔어요.',
+            traits: ['신비로움', '세련됨', '독립적', '개성 있음', '도도함']
+        }
+    };
+
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    async function initTest() {
+        showScreen('screen-analysis');
+        try {
+            model = await tmImage.load(MODEL_URL + "model.json", MODEL_URL + "metadata.json");
+
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('camera-state').style.display = 'block';
+            document.getElementById('analysis-title').textContent = '얼굴을 화면 중앙에 맞춰주세요';
+
+            webcam = new tmImage.Webcam(240, 240, true);
+            await webcam.setup();
+            await webcam.play();
+            document.getElementById('webcam-container').appendChild(webcam.canvas);
+
+            isRunning = true;
+            startTime = Date.now();
+            history = [];
+            requestAnimationFrame(loop);
+        } catch (e) {
+            document.getElementById('analysis-title').textContent = '오류가 발생했습니다';
+            document.getElementById('loading-state').innerHTML = `
+                <p style="color:#ff7070;font-size:0.9em;margin-bottom:16px;">카메라 권한이 거부됐거나 모델을 불러올 수 없습니다.</p>
+                <button class="retry-btn" onclick="location.reload()" style="max-width:200px;">다시 시도하기</button>
+            `;
+        }
+    }
+
+    async function loop() {
+        if (!isRunning) return;
+        webcam.update();
+        await predict();
+        requestAnimationFrame(loop);
+    }
+
+    async function predict() {
+        const preds = await model.predict(webcam.canvas);
+
+        let dogProb = 0, catProb = 0;
+        preds.forEach(p => {
+            const n = p.className.toLowerCase();
+            if (n.includes('dog') || n.includes('강아지')) dogProb = p.probability;
+            else if (n.includes('cat') || n.includes('고양이')) catProb = p.probability;
+        });
+        if (dogProb === 0 && catProb === 0 && preds.length >= 2) {
+            dogProb = preds[0].probability;
+            catProb = preds[1].probability;
+        }
+
+        const dp = Math.round(dogProb * 100);
+        const cp = Math.round(catProb * 100);
+        document.getElementById('dog-bar').style.width = dp + '%';
+        document.getElementById('cat-bar').style.width = cp + '%';
+        document.getElementById('dog-pct').textContent = dp + '%';
+        document.getElementById('cat-pct').textContent = cp + '%';
+
+        history.push({ dog: dogProb, cat: catProb });
+
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / ANALYSIS_DURATION, 1);
+        document.getElementById('progress-circle').style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
+        document.getElementById('countdown-num').textContent = Math.max(0, Math.ceil((ANALYSIS_DURATION - elapsed) / 1000));
+
+        if (elapsed >= ANALYSIS_DURATION) {
+            isRunning = false;
+            webcam.stop();
+            showResult();
+        }
+    }
+
+    function showResult() {
+        const avg = (key) => history.reduce((s, p) => s + p[key], 0) / history.length;
+        const avgDog = avg('dog'), avgCat = avg('cat');
+        const isDog = avgDog >= avgCat;
+        const d = isDog ? RESULTS.dog : RESULTS.cat;
+        const score = Math.round((isDog ? avgDog : avgCat) * 100);
+
+        document.getElementById('result-content').innerHTML = `
+            <div class="result-emoji">${d.emoji}</div>
+            <div class="result-type ${d.cls}">${d.type}</div>
+            <div class="result-score">AI 일치율 ${score}%</div>
+            <div class="result-desc">${d.desc}</div>
+            <div class="result-traits">
+                ${d.traits.map(t => `<span class="trait ${d.cls}">${t}</span>`).join('')}
+            </div>
+            <button class="retry-btn" onclick="retryTest()">🔄 다시 테스트하기</button>
+        `;
+        showScreen('screen-result');
+    }
+
+    function retryTest() {
+        document.getElementById('webcam-container').innerHTML = '';
+        document.getElementById('loading-state').style.display = 'flex';
+        document.getElementById('loading-state').innerHTML = '<div class="spinner"></div><p>잠시만 기다려주세요</p>';
+        document.getElementById('camera-state').style.display = 'none';
+        document.getElementById('analysis-title').textContent = 'AI 모델 불러오는 중...';
+        showScreen('screen-intro');
+    }
+</script>
+</body>
+</html>

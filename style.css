@@ -158,6 +158,16 @@ lotto-ball {
     margin-top: 20px;
 }
 
+.comments-container {
+    margin-top: 20px;
+}
+
+.comments-container h2 {
+    font-size: 1.8em;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
 .contact-container h2 {
     font-size: 1.8em;
     font-weight: 800;

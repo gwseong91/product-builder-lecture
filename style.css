@@ -519,3 +519,70 @@ lotto-ball {
         font-size: 0.8em;
     }
 }
+
+/* ─── Prize Tiers ─── */
+.prize-container { margin-top: 24px; }
+.prize-container > h2 {
+    font-size: 1.3em;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(to bottom, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.prize-grid { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+.prize-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--border-color);
+    border-radius: 14px;
+    padding: 13px 18px;
+}
+.prize-rank { font-size: 0.83em; font-weight: 800; width: 28px; flex-shrink: 0; color: var(--text-secondary); }
+.rank-1 .prize-rank { color: #FFD700; }
+.rank-2 .prize-rank { color: #C0C0C0; }
+.rank-3 .prize-rank { color: #CD7F32; }
+.prize-match { flex: 1; font-size: 0.87em; font-weight: 600; color: var(--text-primary); text-align: left; }
+.prize-odds { font-size: 0.78em; color: var(--text-secondary); text-align: right; white-space: nowrap; }
+.prize-note { font-size: 0.78em; color: var(--text-secondary); line-height: 1.6; margin-top: 10px; text-align: left; }
+
+/* ─── FAQ ─── */
+.faq-container { margin-top: 24px; }
+.faq-container > h2 {
+    font-size: 1.3em;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(to bottom, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { padding: 16px 0; border-bottom: 1px solid var(--border-color); text-align: left; }
+.faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+.faq-q { font-size: 0.91em; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start; }
+.faq-q::before { content: 'Q'; color: #00d2ff; font-weight: 900; flex-shrink: 0; }
+.faq-a { font-size: 0.86em; color: var(--text-secondary); line-height: 1.75; padding-left: 20px; }
+
+/* ─── Guide CTA Banner ─── */
+.guide-cta-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, rgba(0,210,255,0.07), rgba(58,123,213,0.07));
+    border: 1px solid rgba(0,210,255,0.2);
+    border-radius: 18px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    margin-top: 16px;
+}
+.guide-cta-banner:hover {
+    background: linear-gradient(135deg, rgba(0,210,255,0.13), rgba(58,123,213,0.13));
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,210,255,0.1);
+}
+.guide-cta-text { flex: 1; }
+.guide-cta-text strong { display: block; font-size: 0.92em; font-weight: 800; margin-bottom: 3px; }
+.guide-cta-text small { font-size: 0.77em; color: var(--text-secondary); }

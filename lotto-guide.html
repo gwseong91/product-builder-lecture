@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="로또 6/45 완전 가이드 - 당첨 확률, 등수별 기준, 번호 선택 방법, 당첨금 수령까지 로또에 관한 모든 정보를 정리했습니다.">
+    <meta property="og:title" content="로또 6/45 완전 가이드 - 럭키툴즈">
+    <meta property="og:description" content="로또 당첨 확률, 등수 기준, 번호 선택 방법까지 한 번에 정리한 가이드입니다.">
+    <meta property="og:type" content="article">
+    <title>로또 완전 가이드 - 럭키툴즈</title>
+    <meta name="google-adsense-account" content="ca-pub-4937725439326902">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4937725439326902" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "로또 6/45 완전 가이드",
+        "description": "로또 당첨 확률, 등수별 기준, 번호 선택 방법, 당첨금 수령까지 로또에 관한 모든 정보를 정리했습니다.",
+        "author": { "@type": "Organization", "name": "럭키툴즈" },
+        "publisher": { "@type": "Organization", "name": "럭키툴즈" },
+        "inLanguage": "ko",
+        "datePublished": "2025-05-29"
+    }
+    </script>
+    <style>
+        main { padding: 40px 20px 60px; }
+
+        .page-card {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--container-bg);
+            border-radius: 40px;
+            box-shadow: 0 30px 60px var(--shadow-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            padding: 52px 48px;
+            transition: background-color 0.3s, box-shadow 0.3s, border 0.3s;
+        }
+
+        .page-title {
+            font-size: 2em;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            background: linear-gradient(to bottom, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-lead {
+            font-size: 0.93em;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .guide-section { margin-bottom: 36px; }
+
+        .guide-section p {
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        .guide-section p + p { margin-top: 10px; }
+
+        .prize-guide-grid { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+
+        .prize-guide-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--border-color);
+            border-radius: 13px;
+            padding: 13px 18px;
+        }
+
+        .pgr { font-size: 0.83em; font-weight: 800; width: 28px; flex-shrink: 0; color: var(--text-secondary); }
+        .pgr.r1 { color: #FFD700; }
+        .pgr.r2 { color: #C0C0C0; }
+        .pgr.r3 { color: #CD7F32; }
+
+        .pgm { flex: 1; font-size: 0.86em; font-weight: 600; color: var(--text-primary); }
+        .pga { font-size: 0.78em; color: var(--text-secondary); text-align: right; white-space: nowrap; }
+
+        .tip-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 14px 0;
+        }
+
+        .tip-list li {
+            font-size: 0.87em;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tip-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00d2ff;
+            font-weight: 700;
+        }
+
+        .tip-list li strong { color: var(--text-primary); font-weight: 700; }
+
+        .info-box {
+            background: var(--border-color);
+            border-radius: 14px;
+            padding: 16px 18px;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            margin-top: 12px;
+        }
+
+        .guide-faq { display: flex; flex-direction: column; }
+
+        .guide-faq-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .guide-faq-item:last-child { border-bottom: none; }
+
+        .guide-faq-q {
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+        }
+
+        .guide-faq-q::before { content: 'Q.'; color: #00d2ff; font-weight: 900; flex-shrink: 0; }
+
+        .guide-faq-a {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 24px;
+        }
+
+        .cta-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--btn-gradient);
+            color: white;
+            font-weight: 800;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 100px;
+            box-shadow: 0 10px 25px var(--btn-shadow);
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            box-sizing: border-box;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 35px var(--btn-shadow);
+        }
+
+        @media (max-width: 480px) {
+            main { padding: 24px 16px 50px; }
+            .page-card { padding: 36px 24px; border-radius: 28px; }
+            .page-title { font-size: 1.7em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">🍀 럭키툴즈</a>
+            <nav class="site-nav">
+                <a href="index.html">로또 추첨기</a>
+                <a href="animal-test.html">동물상 테스트</a>
+                <a href="lotto-guide.html" aria-current="page">로또 가이드</a>
+                <a href="about.html">소개</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-card">
+            <h1 class="page-title">🎱 로또 6/45 완전 가이드</h1>
+            <p class="page-lead">
+                로또는 어떤 게임이고, 당첨 확률은 얼마나 될까요?
+                번호는 어떻게 고르는 것이 좋을까요? 당첨되면 어떻게 수령하나요?
+                로또에 관해 궁금했던 모든 것을 정리했습니다.
+            </p>
+
+            <!-- 로또란? -->
+            <div class="guide-section">
+                <h2 class="section-title">로또란 무엇인가요?</h2>
+                <p>
+                    로또 6/45는 1부터 45까지의 숫자 중 6개를 선택하여 매주 토요일 공개 추첨하는 번호와 일치하는 개수에 따라 당첨금을 받는 국민 복권입니다.
+                    1장에 1,000원으로 구매할 수 있으며, 한 장에 최대 5게임까지 번호를 선택할 수 있습니다.
+                    추첨은 매주 토요일 오후 8시 45분 KBS2TV를 통해 생중계됩니다.
+                </p>
+                <p>
+                    로또는 순수한 확률 게임으로, 모든 번호 조합이 동일한 당첨 확률을 가집니다.
+                    특별한 전략이나 패턴이 확률을 높여주지는 않으며, 자동 선택과 수동 선택의 확률도 완전히 동일합니다.
+                    럭키툴즈의 번호 추첨기는 이 과정을 빠르고 편리하게 도와드립니다.
+                </p>
+            </div>
+
+            <!-- 역사 -->
+            <div class="guide-section">
+                <h2 class="section-title">한국 로또의 역사</h2>
+                <p>
+                    한국의 로또 6/45는 2002년 12월 7일 첫 회차가 시작되었습니다.
+                    초기에는 전국 복권 판매점에서만 구매할 수 있었지만,
+                    이후 동행복권(구 나눔로또) 공식 앱을 통한 온라인 구매도 가능해졌습니다.
+                </p>
+                <p>
+                    로또 수익금의 일부는 복지, 교육, 문화 등 공익사업에 사용됩니다.
+                    2002년 첫 출시 이후 누적 판매액이 수십조 원에 달하며,
+                    매 회차 평균 수백만 장이 판매되는 국민 복권으로 자리 잡았습니다.
+                    현재는 주택도시기금, 과학기술진흥기금 등 국가 공익 재원 마련에 기여하고 있습니다.
+                </p>
+            </div>
+
+            <!-- 당첨 등수 -->
+            <div class="guide-section">
+                <h2 class="section-title">당첨 등수와 기준</h2>
+                <p>추첨 시 6개의 당첨 번호와 보너스 번호 1개를 뽑습니다. 등수는 구매한 번호와 일치하는 개수로 결정됩니다.</p>
+                <div class="prize-guide-grid">
+                    <div class="prize-guide-item">
+                        <span class="pgr r1">1등</span>
+                        <span class="pgm">6개 번호 모두 일치</span>
+                        <span class="pga">판매금 40% 배분</span>
+                    </div>
+                    <div class="prize-guide-item">
+                        <span class="pgr r2">2등</span>
+                        <span class="pgm">5개 번호 + 보너스 번호 일치</span>
+                        <span class="pga">판매금 10% 배분</span>
+                    </div>
+                    <div class="prize-guide-item">
+                        <span class="pgr r3">3등</span>
+                        <span class="pgm">5개 번호 일치</span>
+                        <span class="pga">판매금 15% 배분</span>
+                    </div>
+                    <div class="prize-guide-item">
+                        <span class="pgr r4">4등</span>
+                        <span class="pgm">4개 번호 일치</span>
+                        <span class="pga">5만원 고정</span>
+                    </div>
+                    <div class="prize-guide-item">
+                        <span class="pgr r5">5등</span>
+                        <span class="pgm">3개 번호 일치</span>
+                        <span class="pga">5천원 고정</span>
+                    </div>
+                </div>
+                <div class="info-box">
+                    ※ 1·2·3등 당첨금은 해당 회차 복권 판매금의 50%를 등급별 비율로 나눈 뒤, 다시 당첨자 수로 균등 분배합니다.
+                    당첨자가 없을 경우 1등 금액은 다음 회차로 이월됩니다. 4·5등은 고정 금액입니다.
+                </div>
+            </div>
+
+            <!-- 당첨 확률 -->
+            <div class="guide-section">
+                <h2 class="section-title">로또 당첨 확률</h2>
+                <p>
+                    45개 번호 중 6개를 순서 없이 선택하는 경우의 수는 총 <strong style="color:var(--text-primary);">8,145,060가지</strong>입니다.
+                    즉, 로또 1장으로 1등에 당첨될 확률은 약 <strong style="color:var(--text-primary);">814만 분의 1</strong>입니다.
+                    이는 벼락에 맞을 확률보다도 낮은 수준입니다.
+                </p>
+                <p>
+                    그렇다고 희망이 없는 것은 아닙니다. 5등(3개 일치)의 확률은 약 1/45로,
+                    45장을 사면 통계적으로 한 번은 5천원을 회수할 수 있습니다.
+                    로또는 당첨을 기대하기보다 소소한 설렘을 즐기는 엔터테인먼트로 접근하는 것이 좋습니다.
+                </p>
+                <div class="info-box">
+                    <strong>등수별 당첨 확률 요약</strong><br>
+                    1등: 1/8,145,060 &nbsp;·&nbsp; 2등: 1/1,357,510 &nbsp;·&nbsp; 3등: 1/35,724<br>
+                    4등: 1/733 &nbsp;·&nbsp; 5등: 1/45
+                </div>
+            </div>
+
+            <!-- 번호 선택 방법 -->
+            <div class="guide-section">
+                <h2 class="section-title">번호 선택 방법</h2>
+                <p>번호를 선택하는 방법은 자동과 수동으로 나뉘며, 확률은 동일합니다.</p>
+                <ul class="tip-list">
+                    <li><strong>자동 선택:</strong> 럭키툴즈처럼 난수 생성기를 이용하거나 판매점 단말기에서 자동으로 번호를 뽑는 방법입니다. 빠르고 간편하며, 모든 번호에 동등한 기회가 주어집니다.</li>
+                    <li><strong>수동 선택:</strong> 생일, 기념일, 좋아하는 숫자 등 직접 의미 있는 번호를 고르는 방법입니다. 단, 생일처럼 1~31 범위에 치우친 번호는 다른 구매자와 겹칠 가능성이 높아 1등 시 나눠 받는 금액이 줄어들 수 있습니다.</li>
+                    <li><strong>게임 수 늘리기:</strong> 1장(1게임)보다 5게임(5장)을 구매하면 당첨 확률이 정확히 5배 높아집니다. 예산 범위 내에서 게임 수를 늘리는 것이 가장 현실적인 방법입니다.</li>
+                    <li><strong>연속 번호 조합:</strong> 1,2,3,4,5,6과 같은 조합도 확률은 완전히 동일합니다. 다만 이런 번호를 선택하는 사람이 적기 때문에, 당첨 시 혼자 독식할 가능성이 오히려 높아집니다.</li>
+                </ul>
+            </div>
+
+            <!-- 당첨금 수령 -->
+            <div class="guide-section">
+                <h2 class="section-title">당첨금 수령 방법</h2>
+                <ul class="tip-list">
+                    <li><strong>5등 (5,000원):</strong> 전국 복권 판매점 어디서나 즉시 수령 가능합니다.</li>
+                    <li><strong>4등 (5만원):</strong> 농협은행 지점 또는 복권 판매점에서 수령합니다.</li>
+                    <li><strong>3등 (약 150만원 내외):</strong> 농협은행 지점 방문 수령이 필요합니다.</li>
+                    <li><strong>2등·1등 (고액):</strong> 동행복권 복권 수령 전용 창구(서울 본사 및 지방 지사)에서만 수령 가능합니다. 당첨 확인일로부터 <strong>1년 이내</strong>에 수령해야 하며, 기간이 지나면 당첨금이 소멸됩니다.</li>
+                </ul>
+                <div class="info-box">
+                    ※ 당첨금 세금: 200만원 초과분부터 22%(소득세 20% + 지방소득세 2%)가 원천징수됩니다.
+                    5억원 초과분은 33%가 적용됩니다. 실수령액은 세후 금액임을 참고해 주세요.
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="guide-section">
+                <h2 class="section-title">자주 묻는 질문</h2>
+                <div class="guide-faq">
+                    <div class="guide-faq-item">
+                        <div class="guide-faq-q">자동 번호와 수동 번호 중 어느 게 더 당첨 확률이 높나요?</div>
+                        <div class="guide-faq-a">통계적으로 완전히 동일합니다. 1~45번 중 어떤 6개 조합이든 선택될 확률은 동등합니다. 1등 당첨자 중 자동 선택 비율이 높아 보이는 것은, 자동 선택 구매자 수 자체가 훨씬 많기 때문입니다.</div>
+                    </div>
+                    <div class="guide-faq-item">
+                        <div class="guide-faq-q">지난 회차에서 나온 번호를 다시 사면 확률이 낮아지나요?</div>
+                        <div class="guide-faq-a">아닙니다. 로또 추첨은 매 회차가 완전히 독립적인 사건입니다. 이전 회차의 결과가 다음 회차에 전혀 영향을 주지 않으므로, 과거 당첨 번호를 다시 구매해도 확률은 동일합니다.</div>
+                    </div>
+                    <div class="guide-faq-item">
+                        <div class="guide-faq-q">매주 1장씩 사면 얼마나 지나야 1등에 당첨될까요?</div>
+                        <div class="guide-faq-a">1등 확률이 약 1/814만이므로, 매주 1장씩 산다면 이론상 약 156,000년이 걸립니다. 물론 이는 기대값이며, 첫 장에서 당첨되는 것도 수학적으로 가능합니다. 로또는 결과를 예측할 수 없기 때문에 부담 없는 금액으로 즐기는 오락으로 생각하는 것이 좋습니다.</div>
+                    </div>
+                    <div class="guide-faq-item">
+                        <div class="guide-faq-q">럭키툴즈 번호 추첨기는 어떻게 작동하나요?</div>
+                        <div class="guide-faq-a">브라우저의 내장 난수 생성기(Math.random)를 사용해 1~45번 중 서로 다른 6개를 무작위로 추출합니다. 외부 서버와 통신하지 않으며 모든 처리가 기기 내에서 완결됩니다. 어떤 번호든 선택될 확률이 동일한 진정한 무작위 방식입니다.</div>
+                    </div>
+                    <div class="guide-faq-item">
+                        <div class="guide-faq-q">1등 당첨 복권을 잃어버리면 어떻게 되나요?</div>
+                        <div class="guide-faq-a">실물 복권을 분실하면 당첨금을 받을 수 없습니다. 고액 당첨 복권은 반드시 안전한 곳에 보관하고, 가능한 한 빠르게 수령하는 것을 권장합니다. 동행복권 앱을 통한 온라인 구매는 당첨 내역이 계좌에 자동으로 기록되므로 분실 걱정이 없습니다.</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="cta-btn">🎱 지금 번호 생성하러 가기</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="about.html">서비스 소개</a>
+                <a href="lotto-guide.html">로또 가이드</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+                <a href="index.html#contact-section">문의하기</a>
+            </div>
+            <p class="footer-copy">© 2025 럭키툴즈. 본 서비스는 무료로 제공됩니다.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

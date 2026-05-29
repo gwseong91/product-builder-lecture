@@ -34,10 +34,12 @@
 body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 60px 20px;
+    box-sizing: border-box;
     background-color: var(--bg-color);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-blend-mode: overlay;
@@ -56,9 +58,9 @@ body {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
-    max-width: 90%;
-    width: 600px;
-    margin: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
@@ -155,17 +157,20 @@ lotto-ball {
 }
 
 .contact-container {
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .comments-container {
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .comments-container h2 {
     font-size: 1.8em;
     font-weight: 800;
     margin-bottom: 30px;
+    background: linear-gradient(to bottom, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .contact-container h2 {
@@ -250,8 +255,12 @@ lotto-ball {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 30px 16px;
+    }
     .container {
         padding: 40px 20px;
+        border-radius: 28px;
     }
     h1 {
         font-size: 1.8em;
@@ -259,5 +268,9 @@ lotto-ball {
     lotto-ball {
         width: 50px;
         height: 50px;
+    }
+    .contact-container,
+    .comments-container {
+        margin-top: 16px;
     }
 }
